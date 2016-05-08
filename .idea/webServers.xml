@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="3bc2bb47-bf89-4ea1-b5ca-99ebb69af8f3" name="Raspberry" url="http://192.168.0.105">
-        <fileTransfer host="192.168.0.105" port="22" accessType="SFTP" username="pi">
+        <fileTransfer host="192.168.0.105" port="22" accessType="SFTP" password="dfd8dfcbdfd9dfdadfc8dfcfdfd8dfd8dfd3" username="pi">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" />
           </advancedOptions>
