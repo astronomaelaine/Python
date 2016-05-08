@@ -36,7 +36,7 @@ def finalizar_app(signal,frame):
     global continue_reading
     print("\nCtrl+C pressionado, encerrando aplicacao...")
     continue_reading = False
-    GPIO.output(8, 0)
+
     GPIO.cleanup()
 
  
@@ -48,22 +48,37 @@ continue_reading = True
 #GPIO.output(8, 1)
 #GPIO.output(10, 0)
 
+red = 12
+blue = 8
+green = 16
+
 def initGpio():
     GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(8, GPIO.OUT)
-    GPIO.setup(16, GPIO.OUT)
-    GPIO.setup(12, GPIO.OUT)
-    GPIO.output(8, 1)
+    GPIO.setup(green, GPIO.OUT) #Led verde
+    GPIO.setup(red, GPIO.OUT) #Led vermelho
+    GPIO.setup(blue, GPIO.OUT) #Led azul
+    #GPIO.setup(11, GPIO.OUT) #Buzzer
+    GPIO.output(green, 0)
+    GPIO.output(red, 0)
+    GPIO.output(blue, 1)
 
 def redOn():
-    GPIO.output(16,True)
-    time.sleep(2)
-    GPIO.output(16,False)
+    GPIO.output(blue, 0)
+    GPIO.output(red, True)
+    #GPIO.output(11, True)
+    time.sleep(0.8)
+    GPIO.output(red, False)
+    #GPIO.output(11, False)
+    GPIO.output(blue, 1)
 
 def greenOn():
-    GPIO.output(12,True)
-    time.sleep(0.3)
-    GPIO.output(12,False)
+    GPIO.output(blue, 0)
+    GPIO.output(green,True)
+    #GPIO.output(11,True)
+    time.sleep(0.5)
+    GPIO.output(green,False)
+    #GPIO.output(11,False)
+    GPIO.output(blue, 1)
 
 def main():
  
@@ -92,14 +107,14 @@ def main():
         # If we have the UID, continue
         if status == MIFAREReader.MI_OK:
             if uid in acessos_autorizados:
-                    print("Acesso liberado!")
-		    greenOn()
+                print("Acesso liberado!")
+                greenOn()
 		    		    #GPIO.output(10, 1)
 		    #time.sleep(1) 
 		    #GPIO.output(10, 0)
             else:
-                    print("Sem acesso!")
-		    redOn()
+                print("Sem acesso!")
+                redOn()
 
 if __name__ == "__main__":
     main()
