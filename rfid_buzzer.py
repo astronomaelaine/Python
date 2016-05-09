@@ -121,6 +121,7 @@ def main():
 		    #time.sleep(1) 
 		    #GPIO.output(10, 0)
             else:
+                print "Card read UID: " + str(uid[0]) + "," + str(uid[1]) + "," + str(uid[2]) + "," + str(uid[3])
                 print("Sem acesso!")
                 redOn()
 
