@@ -51,33 +51,41 @@ continue_reading = True
 red = 12
 blue = 8
 green = 16
+buzzer = 7
 
 def initGpio():
     GPIO.setmode(GPIO.BOARD)
     GPIO.setup(green, GPIO.OUT) #Led verde
     GPIO.setup(red, GPIO.OUT) #Led vermelho
     GPIO.setup(blue, GPIO.OUT) #Led azul
-    #GPIO.setup(11, GPIO.OUT) #Buzzer
+    GPIO.setup(buzzer, GPIO.OUT) #Buzzer
     GPIO.output(green, 0)
     GPIO.output(red, 0)
+    GPIO.output(buzzer, 0)
     GPIO.output(blue, 1)
 
 def redOn():
     GPIO.output(blue, 0)
     GPIO.output(red, True)
-    #GPIO.output(11, True)
-    time.sleep(0.8)
+    GPIO.output(buzzer, True)
+    time.sleep(0.1)
+    GPIO.output(buzzer, False)
     GPIO.output(red, False)
-    #GPIO.output(11, False)
+    time.sleep(0.1)
+    GPIO.output(buzzer, True)
+    GPIO.output(red, True)
+    time.sleep(0.1)
+    GPIO.output(red, False)
+    GPIO.output(buzzer, False)
     GPIO.output(blue, 1)
 
 def greenOn():
     GPIO.output(blue, 0)
     GPIO.output(green,True)
-    #GPIO.output(11,True)
-    time.sleep(0.5)
+    GPIO.output(buzzer,True)
+    time.sleep(0.3)
     GPIO.output(green,False)
-    #GPIO.output(11,False)
+    GPIO.output(buzzer,False)
     GPIO.output(blue, 1)
 
 def main():
